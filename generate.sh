@@ -40,7 +40,7 @@ while getopts "$optspec" optchar; do
                     echo "Usage: $0 --license[=]<value> [--output-directory[=]<value>] [--separate-anonymous-proxies]" >&2
                     echo "Options:" >&2
                     echo "--license                      A MaxMind.com account ID and license key separated by colon: 'accountID:licenceKey'. Get data from maxmind.com -> My Account -> My License Key" >&2
-                    echo "--output-directory             Output directory for subnets. Default 'subnets'" >&2
+                    echo "--output-directory             Output directory for subnets. CAUTION: All txt files will be removed from this directory, before generating subnets files. Default 'subnets'" >&2
                     echo "--separate-anonymous-proxies   If set, anonymous proxies will be stored into different file: CountryCode_anonymous_proxies.txt" >&2
                     exit 2
                     ;;
@@ -54,7 +54,7 @@ while getopts "$optspec" optchar; do
             echo "Usage: $0 --license[=]<value> [--output-directory[=]<value>] [--separate-anonymous-proxies]" >&2
             echo "Options:" >&2
             echo "--license                      A MaxMind.com account ID and license key separated by colon: 'accountID:licenceKey'. Get data from maxmind.com -> My Account -> My License Key" >&2
-            echo "--output-directory             Output directory for subnets. Default 'subnets'" >&2
+            echo "--output-directory             Output directory for subnets. CAUTION: All txt files will be removed from this directory, before generating subnets files. Default 'subnets'" >&2
             echo "--separate-anonymous-proxies   If set, anonymous proxies will be stored into different file: CountryCode_anonymous_proxies.txt" >&2
             exit 2
             ;;
@@ -87,7 +87,7 @@ cp -r GeoLite2-Country-CSV_* $COUNTRIES
 rm -rf GeoLite2-Country-CSV_*
 
 mkdir -p $OUTPUT_DIRECTORY
-rm $OUTPUT_DIRECTORY/*.txt # delete old entries
+rm -rf $OUTPUT_DIRECTORY/*.txt # delete old entries
 
 # generate subnets/COUNTRYCODE.txt files and fill it with subnets
 IFS=","
